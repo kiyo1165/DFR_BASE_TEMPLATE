@@ -1,6 +1,6 @@
 # DFR_BASE_TEMPLATE
 ## 概要
-DFR,CustomUserModel, JWT認証の基本機能を備えている。 
+DFR,CustomUserModel, JWT認証の基本機能 
 
 ## インストール
 1. DBはPostgresを使用しているため、必要に応じて変更してください。
@@ -9,6 +9,8 @@ DFR,CustomUserModel, JWT認証の基本機能を備えている。
 4. python manage.py migrate
 5. to enjoy
 
+## ライブラリ
+Pipfileを参照
 
 ## セキュリティーについて
 django-envronをインストールしているので、必要に応じて環境変数でデータを保護してください。
