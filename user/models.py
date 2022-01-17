@@ -44,12 +44,38 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.name
 
 class Profile(models.Model):
+
+    GENDER_SELECT = [
+        ('male', '男性'),
+        ('female', '女性'),
+        ('xgender', '中間'),
+    ]
     user_profile = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         related_name='user_profile',
         on_delete=models.CASCADE
     )
     img = models.ImageField(blank=True, null=True, upload_to=upload_avater_path)
+    gender = models.CharField(max_length=7, blank=True, null=True, choices=GENDER_SELECT, default='mail')
+    age = models.CharField(max_length=3, blank=True, null=True)
+    zip_code = models.CharField(max_length=7, blank=True, null=True)
+    address = models.CharField(max_length=30, blank=True, null=True)
+    build_name = models.CharField(max_length=30, blank=True, null=True)
+    self_description = models.TextField(max_length=500, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
 
     def __str__(self):
         return self.user_profile.name
+
+
+class Message(models.Model):
+    message = models.TextField(max_length=500)
+    created_at = models.DateTimeField(auto_now_add=True)
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sender')
+    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='receiver')
+
+    def __str__(self):
+        return self.message

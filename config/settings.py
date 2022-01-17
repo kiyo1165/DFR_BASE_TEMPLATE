@@ -10,11 +10,11 @@ env = environ.Env()
 env.read_env(os.path.join(BASE_DIR, '.env'))
 
 
-SECRET_KEY = 'django-insecure-=km-n6*p=5-u(&-$66o6wu_#x7yb^&7ct%*v)tkq!h43=r%y1o'
+SECRET_KEY = env('SECRET_KEY')
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -25,12 +25,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
-    # JWT認証
-    'rest_framework_simplejwt',
     #認証エンドポイントを作成
     'djoser',
     #アプリ
     'user',
+    'core_api',
 ]
 
 MIDDLEWARE = [
@@ -90,9 +89,9 @@ SIMPLE_JWT = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'template_db',
-        'USER': 'k_akashi',
-        'PASSWORD':'kiyo1165',
+        'NAME': env('NAME'),
+        'USER': env('USER'),
+        'PASSWORD':env('PASSWORD'),
         'HOST': 'localhost',
         'PORT': '5432',
     }

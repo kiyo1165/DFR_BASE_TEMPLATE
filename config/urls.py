@@ -5,9 +5,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('user/', include('user.urls')),
+    path('user_api/', include('user.urls')),
     #認証
     path('authen/', include('djoser.urls.jwt')),
+    path('core_api/', include('core_api.urls')),
 ]
 
 if settings.DEBUG:
